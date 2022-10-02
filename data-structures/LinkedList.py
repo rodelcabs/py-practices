@@ -58,26 +58,69 @@ class LinkedList:
         
         while c < index:
             current = current.next
+            c+=1
 
         return self.data(current, index)
 
     def getFirst(self):
-        return 
+        return self.data(self.head)
 
     def getLast(self):
-        return
+        if self.size == 0:
+            return
 
-    def removeFirst(self):
-        return
+        current = self.head
+
+        while bool(current.next):
+            current = current.next
+        
+        return self.data(current, self.size - 1)
+
+    def removeFirst(self): 
+        if self.size == 0:
+            return
+
+        current = self.head
+        self.head = current.next
+        self.decrementSize()
     
-    def removeLast(self):
-        return
+    def removeLast(self): 
+        if self.size == 0:
+            return
+
+        current, prev = self.head, None
+
+        while bool(current.next):
+            prev = current
+            current = current.next
+        
+        prev.next = None
+        self.decrementSize()
 
     def removeAt(self, index):
-        return
+        if self.size == 0 or index >= self.size:
+            return
+        print(self.size)
+
+        current, prev, c = self.head, None, 0
+
+        while c < index:
+            prev = current
+            current = current.next
+            c+=1
+
+        prev.next = current.next if bool(current) else current
+        self.decrementSize()
     
     def reverse(self): # the iconic reverse linked list
-        return
+        current, prev, next = self.head, None, None
+
+        while bool(current):
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        
 
     def print(self):
         current, c = self.head, 0
@@ -103,5 +146,16 @@ linkedList.insertLast(300)
 linkedList.insertFirst(200)
 linkedList.insertFirst(100)
 linkedList.insertAt(1, 101)
-# linkedList.print()
-print(linkedList.getAt(1))
+# print(linkedList.getAt(2))
+# print(linkedList.getFirst())
+# print(linkedList.getLast())
+# linkedList.removeFirst()
+# linkedList.removeLast()
+print("BEFORE")
+linkedList.print()
+# linkedList.removeAt(1)
+# linkedList.removeAt(2)
+print("AFTER")
+linkedList.reverse()
+linkedList.print()
+
