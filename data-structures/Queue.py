@@ -1,8 +1,6 @@
 from Stack import Stack
 
-# STACK = first in, first out (FIIFO)
-
-
+# QUEUE = first in, first out (FIIFO)
 class Queue():
     def __init__(self):
         # use stack data structure
