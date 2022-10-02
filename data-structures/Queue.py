@@ -1,4 +1,3 @@
-from collections import deque
 from Stack import Stack
 
 # STACK = first in, first out (FIIFO)
