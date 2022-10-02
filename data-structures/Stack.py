@@ -29,11 +29,11 @@ class Stack:
         print([i.data for i in self.stack])
 
 
-
-stack = Stack()
-stack.push(1)
-stack.push(2)
-stack.push(3)
-stack.pop()
-stack.push(4)
-stack.printData()
+if __name__ == "__main__":
+    stack = Stack()
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+    stack.push(4)
+    stack.pop()
+    stack.printData()
