@@ -1,42 +1,29 @@
-from _typeshed import OpenBinaryMode
-from Stack import Stack
 
 class TreeNode():
     def __init__(self, data):
         self.parent = None
         self.data = data 
-        self.children = Stack()
+        self.left = None
+        self.right = None
     
-    def addChildren(self, *nodes): 
-        self.children.pushAll(*nodes)
-    
-    def getChildren(self):
-        return [node.data for node in self.children.values()]
-    
-    def treeVisual(self):
-        if not bool(self.data):
-            return
+    # left -> root -> right
+    def inOrderTraversal (self, root):
+        res = []
+        if root:
+            res = self.inOrderTraversal(root.left) # left
+            res.append(root.data) # root 
+            res = res + self.inOrderTraversal(root.right) # right
         
-        current = self.data
-
-        print(f"root: {current.data}")
-
-        # traverse, check if node has children
-        while len(current.children) > 0:
-            print(f"node: {current.data}")
-            for node in current.children:
-                
+        return res
 
 if __name__ == "__main__":
     root = TreeNode(1)
-    rootChildA = TreeNode(2)
-    rootChildB = TreeNode(6)
-    root.addChildren(rootChildA,rootChildB)
-    rootChildren = root.getChildren()
-
-    rootChildA.addChildren(TreeNode(3), TreeNode(4), TreeNode(5))
-    rootChildB.addChildren(TreeNode(7), TreeNode(8))
+    root.left = TreeNode(2)
+    root.left.left = TreeNode(3)
+    root.left.right = TreeNode(4)
+    root.right = TreeNode(5)
+    root.right.left = TreeNode(6)
     
-    print(rootChildren)
+    print(root.inOrderTraversal(root))
     
 
